@@ -5,13 +5,33 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AddNotes from "./src/screens/AddNotes";
 import ViewNotes from "./src/screens/ViewNotes";
 import { NavigationContainer } from "@react-navigation/native";
+import { colors } from "./src/global/colors";
 
 const StackNavigator = createStackNavigator();
+
+const headerStyle = {
+  headerStyle: { backgroundColor: colors.background },
+  headerTintColor: "#fff",
+};
 const Main = () => {
   return (
     <StackNavigator.Navigator initialRouteName="ViewNotes">
-      <StackNavigator.Screen name="ViewNotes" component={ViewNotes} options={{headerShown: false}}/>
-      <StackNavigator.Screen name="AddNotes" component={AddNotes} />
+      <StackNavigator.Screen
+        name="ViewNotes"
+        component={ViewNotes}
+        options={{
+          headerTitle: "Ghi chú",
+          ...headerStyle,
+        }}
+      />
+      <StackNavigator.Screen
+        name="AddNotes"
+        component={AddNotes}
+        options={{
+          headerTitle: "Thêm ghi chú",
+          ...headerStyle,
+        }}
+      />
     </StackNavigator.Navigator>
   );
 };
