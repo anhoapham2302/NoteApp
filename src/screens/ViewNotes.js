@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { FAB } from "react-native-paper";
 import Header from "../components/Header";
 import { colors } from "../global/colors";
@@ -8,9 +9,19 @@ export default function ViewNotes(props) {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>You do not have any Notes</Text>
-        </View>
+        <ScrollView style={styles.titleContainer}>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+          <Text style={styles.title}>Bạn không có ghi chú nào</Text>
+        </ScrollView>
         <FAB
           small
           icon="plus"
@@ -32,12 +43,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   titleContainer: {
-    alignItems: "center",
-    justifyContent: "center",
     flex: 1,
   },
   title: {
     fontSize: 20,
+    padding: 20
   },
   fab: {
     position: "absolute",

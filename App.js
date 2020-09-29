@@ -6,6 +6,7 @@ import AddNotes from "./src/screens/AddNotes";
 import ViewNotes from "./src/screens/ViewNotes";
 import { NavigationContainer } from "@react-navigation/native";
 import { colors } from "./src/global/colors";
+import { IconButton } from "react-native-paper";
 
 const StackNavigator = createStackNavigator();
 
@@ -29,6 +30,14 @@ const Main = () => {
         component={AddNotes}
         options={{
           headerTitle: "Thêm ghi chú",
+          headerRight: () => (
+            <IconButton
+            icon="check"
+            color="#fff"
+            size={30}
+            onPress={() =>alert("This is button!")}
+          />
+          ),
           ...headerStyle,
         }}
       />
