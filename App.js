@@ -18,32 +18,40 @@ const headerStyle = {
     fontWeight: 'bold',
   },
 };
-const Main = () => {
+const Main = (props) => {
   return (
     <StackNavigator.Navigator initialRouteName="ViewNotes">
       <StackNavigator.Screen
         name="ViewNotes"
         component={ViewNotes}
-        options={{
+        options={({navigation}) => ({
           headerTitle: "Ghi chú",
+          headerRight: () => (
+            <IconButton
+            icon="plus"
+            color="#fff"
+            size={35}
+            onPress={() => {navigation.navigate("AddNotes")}}
+          />
+          ),
           ...headerStyle,
-        }}
+          })}
       />
       <StackNavigator.Screen
         name="AddNotes"
         component={AddNotes}
-        options={{
+        options={({navigation}) => ({
           headerTitle: "Thêm ghi chú",
           headerRight: () => (
             <IconButton
             icon="check"
             color="#fff"
             size={30}
-            onPress={() =>alert("This is button!")}
+            onPress={() =>navigation.goBack()}
           />
           ),
           ...headerStyle,
-        }}
+        })}
       />
     </StackNavigator.Navigator>
   );

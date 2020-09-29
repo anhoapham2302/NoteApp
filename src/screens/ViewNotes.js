@@ -34,6 +34,7 @@ export default function ViewNotes(props) {
       title: "Title 5",
       content: "Content 5",
     },
+
   ];
 
   return (
@@ -42,17 +43,17 @@ export default function ViewNotes(props) {
         <FlatList
           data={data}
           renderItem={({ item }) => (
-            <NoteItem title={item.title} content={item.content} />
+            <NoteItem title={item.title} content={item.content}/>
           )}
           keyExtractor={(item) => item.id}
         />
-        <FAB
+        {/* <FAB
           icon="plus"
           label="Thêm ghi chú"
           color="#fff"
           style={[styles.fab, { backgroundColor: colors.background }]}
           onPress={() => props.navigation.navigate("AddNotes")}
-        />
+        /> */}
       </View>
     </>
   );
