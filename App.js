@@ -13,6 +13,10 @@ const StackNavigator = createStackNavigator();
 const headerStyle = {
   headerStyle: { backgroundColor: colors.background },
   headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontSize: 23,
+    fontWeight: 'bold',
+  },
 };
 const Main = () => {
   return (
