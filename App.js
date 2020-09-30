@@ -7,7 +7,10 @@ import ViewNotes from "./src/screens/ViewNotes";
 import { NavigationContainer } from "@react-navigation/native";
 import { colors } from "./src/global/colors";
 import { IconButton } from "react-native-paper";
+import { configureStore } from "./src/store";
+import { Provider } from "react-redux";
 
+const store = configureStore();
 const StackNavigator = createStackNavigator();
 
 const headerStyle = {
@@ -15,7 +18,7 @@ const headerStyle = {
   headerTintColor: "#fff",
   headerTitleStyle: {
     fontSize: 23,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 };
 const Main = (props) => {
@@ -24,31 +27,34 @@ const Main = (props) => {
       <StackNavigator.Screen
         name="ViewNotes"
         component={ViewNotes}
-        options={({navigation}) => ({
+        options={({ navigation }) => ({
           headerTitle: "Ghi chú",
           headerRight: () => (
             <IconButton
-            icon="plus"
-            color="#fff"
-            size={35}
-            onPress={() => {navigation.navigate("AddNotes")}}
-          />
+              icon="plus"
+              color="#fff"
+              size={35}
+              onPress={() => {
+                navigation.navigate("AddNotes");
+              }}
+            />
           ),
           ...headerStyle,
-          })}
+        })}
       />
       <StackNavigator.Screen
         name="AddNotes"
         component={AddNotes}
-        options={({navigation}) => ({
+        options={({ navigation }) => ({
           headerTitle: "Thêm ghi chú",
+          headerLeft: false,
           headerRight: () => (
             <IconButton
-            icon="check"
-            color="#fff"
-            size={30}
-            onPress={() =>navigation.goBack()}
-          />
+              icon="close"
+              color="red"
+              size={30}
+              onPress={() => navigation.goBack()}
+            />
           ),
           ...headerStyle,
         })}
@@ -59,9 +65,11 @@ const Main = (props) => {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Main />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Main />
+      </NavigationContainer>
+    </Provider>
   );
 }
 

@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
 import { FAB } from "react-native-paper";
+import { useDispatch } from "react-redux";
+import { addNote } from "../actions/note";
+import Header from "../components/Header";
 import { colors } from "../global/colors";
 
 const { width } = Dimensions.get("window");
 
 export default function AddNotes(props) {
+  const [title, setTitle] = useState(null);
+  const [content, setContent] = useState(null);
+
+  const dispatch = useDispatch();
+
+  const handleAddNote = () => {
+    const newNote = {
+      title: title,
+      content: content,
+    }
+
+    const action = addNote(newNote);
+    dispatch(action);
+
+    props.navigation.goBack();
+  }
+
   return (
+    <>
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <View style={styles.titleContainer}>
@@ -15,6 +36,7 @@ export default function AddNotes(props) {
           </Text>
         </View>
         <TextInput
+          onChangeText={(title) => setTitle(title)}
           style={[styles.titleInput, { borderColor: colors.background }]}
         ></TextInput>
       </View>
@@ -25,10 +47,21 @@ export default function AddNotes(props) {
           </Text>
         </View>
         <TextInput
+        onChangeText={(content) => setContent(content)}
+        multiline
+        numberOfLines = {5}
           style={[styles.contentInput, { borderColor: colors.background }]}
         ></TextInput>
       </View>
+      <FAB
+          icon="check"
+          label="Hoàn tất"
+          color="#fff"
+          style={[styles.fab, { backgroundColor: colors.background }]}
+          onPress={handleAddNote}
+        />
     </View>
+    </>
   );
 }
 
@@ -42,7 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   titleContainer: {
-    marginLeft: width * 0.04,
+    marginLeft: width * 0.015,
     width: 85,
     backgroundColor: "#fff",
     zIndex: 1,
@@ -59,8 +92,8 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     fontSize: 23,
     height: 55,
-    width: width * 0.9,
-    marginLeft: width * 0.05,
+    width: width * 0.95,
+    marginLeft: width * 0.025,
     borderWidth: 1,
     borderRadius: 5,
     position: "absolute",
@@ -71,7 +104,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   contentContainer: {
-    marginLeft: width * 0.04,
+    marginLeft: width * 0.015,
     width: 90,
     backgroundColor: "#fff",
     zIndex: 1,
@@ -82,12 +115,18 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 12,
     fontSize: 20,
-    height: 300,
-    width: width * 0.9,
-    marginLeft: width * 0.05,
+    width: width * 0.95,
+    marginLeft: width * 0.025,
     borderWidth: 1,
     borderRadius: 5,
     position: "absolute",
     zIndex: 0,
+    overflow: "scroll"
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });

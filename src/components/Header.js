@@ -1,12 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Appbar, Title } from "react-native-paper";
+import { Appbar, FAB, IconButton, Title } from "react-native-paper";
+import { colors } from "../global/colors";
 
-export default function Header({ titleText }) {
+export default function Header(props) {
+  console.log(props);
   return (
-    <Appbar.Header style={styles.headerContainer}>
+    <Appbar.Header style={{ backgroundColor: colors.background }}>
       <View style={styles.container}>
-        <Title style={styles.title}>{titleText}</Title>
+        <Appbar.Content title={props.headerTitle} subtitle={props.headerSubtitle}/>
+        <Appbar.Action icon={props.headerIcon} onPress={()=> props.navigation.navigate(props.screen)} color="#fff"/>
       </View>
     </Appbar.Header>
   );
@@ -18,9 +21,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "center",
-  },
-  title: {
-    color: "#fff",
+    flexDirection: "row",
   },
 });
