@@ -9,7 +9,7 @@ export const noteReducer = (state = intialState, action) => {
     case ADD_NOTE:
         {
             const newList = [...state.noteList];
-            newList.push(action.data);
+            newList.unshift(action.data);
             return { ...state, noteList: newList };
         }
     case DELETE_NOTE:

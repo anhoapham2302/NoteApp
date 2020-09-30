@@ -51,9 +51,9 @@ const Main = (props) => {
           headerRight: () => (
             <IconButton
               icon="close"
-              color="red"
+              color="#fff"
               size={30}
-              onPress={() => navigation.goBack()}
+              onPress={() =>   navigation.navigate("ViewNotes")}
             />
           ),
           ...headerStyle,

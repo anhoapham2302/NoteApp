@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
 import { FAB } from "react-native-paper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../actions/note";
 import Header from "../components/Header";
 import { colors } from "../global/colors";
@@ -9,6 +9,7 @@ import { colors } from "../global/colors";
 const { width } = Dimensions.get("window");
 
 export default function AddNotes(props) {
+  const noteList = useSelector((state) => state.note.noteList);
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null);
 
@@ -16,6 +17,7 @@ export default function AddNotes(props) {
 
   const handleAddNote = () => {
     const newNote = {
+      key: noteList.length + 1,
       title: title,
       content: content,
     }
@@ -23,7 +25,7 @@ export default function AddNotes(props) {
     const action = addNote(newNote);
     dispatch(action);
 
-    props.navigation.goBack();
+   props.navigation.navigate("ViewNotes");
   }
 
   return (
