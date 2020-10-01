@@ -22,14 +22,20 @@ export default function NoteItem(props) {
   };
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{props.title}</Text>
+      <View style={styles.textContainer}>  
+      <View style={{borderBottomWidth: 1, borderBottomColor: "#fff"}}>
+      <Text style={styles.title}>{props.title}</Text>
         <Text numberOfLines={3} style={styles.content}>
           {props.content}
         </Text>
-        <Button icon="delete" mode="outlined" color="#fff" style={{width: 100, alignSelf: "flex-end", flex: 1, borderColor:"#fff"}} onPress={handleDeleteNote}>
+      </View>
+      
+        <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginTop: 5}}>
+        <Text style={{color: "#fff", fontSize: 17, }}>{props.time}</Text>
+        <Button icon="delete" mode="outlined" color="#fff" style={{width: 100, borderColor:"#fff"}} onPress={handleDeleteNote}>
     Xóa
   </Button>
+        </View>
       </View>
     </View>
   );
@@ -63,5 +69,6 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 20,
     color: "#fff",
+    marginBottom: 5
   },
 });

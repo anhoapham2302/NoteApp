@@ -16,10 +16,14 @@ export default function AddNotes(props) {
   const dispatch = useDispatch();
 
   const handleAddNote = () => {
+    const date = new Date();
+    const currentTime = date.getHours() + ':' + date.getMinutes() + ' ' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+    
     const newNote = {
       id: noteList.length + 1,
       title: title,
       content: content,
+      time: currentTime
     }
 
     const action = addNote(newNote);

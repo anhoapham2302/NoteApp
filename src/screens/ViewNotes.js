@@ -16,7 +16,7 @@ export default function ViewNotes(props) {
         <FlatList
           data={noteList}
           renderItem={({ item }) => (
-            <NoteItem title={item.title} content={item.content} id={item.id}/>
+            <NoteItem title={item.title} content={item.content} id={item.id} time={item.time}/>
           )}
           keyExtractor={(item) => item.id}
         />
