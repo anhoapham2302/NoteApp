@@ -17,7 +17,7 @@ export default function AddNotes(props) {
 
   const handleAddNote = () => {
     const newNote = {
-      key: noteList.length + 1,
+      id: noteList.length + 1,
       title: title,
       content: content,
     }
